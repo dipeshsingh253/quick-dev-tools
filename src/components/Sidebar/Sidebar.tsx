@@ -105,7 +105,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
       {/* Footer */}
       <div className="border-t border-gray-200 dark:border-[#30363d] py-2">
         <a
-          href="https://github.com"
+          href="https://github.com/dipeshsingh253"
           target="_blank"
           rel="noopener noreferrer"
           className={clsx(
@@ -117,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
           {!isCollapsed && <span className="text-sm">@dipeshsingh253</span>}
         </a>
         <a
-          href="#"
+          href="https://x.com/dipeshdotdev"
           className={clsx(
             'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
           )}
