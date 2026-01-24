@@ -133,13 +133,13 @@ export const ConfigFormatter: React.FC = () => {
   const outputLineCount = getLineCount(output);
 
   return (
-    <div className="h-full flex flex-col bg-[#0d1117]">
+    <div className="h-full flex flex-col bg-white dark:bg-[#0d1117]">
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Input Panel */}
-        <div className="flex-1 flex flex-col border-r border-[#30363d] min-w-0">
+        <div className="flex-1 flex flex-col border-r border-gray-200 dark:border-[#30363d] min-w-0">
           {/* Input Header */}
-          <div className="flex items-center justify-between px-4 py-2 bg-[#0d1117] border-b border-[#30363d]">
+          <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d]">
             <div className="flex items-center gap-3">
               <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Input</span>
               {input.trim() && (
@@ -151,7 +151,7 @@ export const ConfigFormatter: React.FC = () => {
                 </span>
               )}
             </div>
-            <button className="p-1.5 rounded hover:bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9] transition-colors">
+            <button className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors">
               <Search size={16} />
             </button>
           </div>
@@ -161,7 +161,7 @@ export const ConfigFormatter: React.FC = () => {
             {/* Line Numbers */}
             <div 
               ref={inputLineNumbersRef}
-              className="py-3 bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
+              className="py-3 bg-white dark:bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
               style={{ lineHeight: '1.5rem' }}
             >
               {renderLineNumbers(inputLineCount)}
@@ -174,7 +174,7 @@ export const ConfigFormatter: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onScroll={handleInputScroll}
               placeholder="Paste your JSON or YAML here..."
-              className="flex-1 bg-[#0d1117] text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
+              className="flex-1 bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
               style={{ lineHeight: '1.5rem' }}
               spellCheck={false}
             />
@@ -184,7 +184,7 @@ export const ConfigFormatter: React.FC = () => {
         {/* Output Panel */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Output Header */}
-          <div className="flex items-center justify-between px-4 py-2 bg-[#0d1117] border-b border-[#30363d]">
+          <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-[#0d1117] border-b border-gray-200 dark:border-[#30363d]">
             <div className="flex items-center gap-3">
               <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Output</span>
               <div className="flex items-center gap-1 ml-2">
@@ -232,7 +232,7 @@ export const ConfigFormatter: React.FC = () => {
             {/* Line Numbers */}
             <div 
               ref={outputLineNumbersRef}
-              className="py-3 bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
+              className="py-3 bg-white dark:bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
               style={{ lineHeight: '1.5rem' }}
             >
               {renderLineNumbers(outputLineCount)}
@@ -242,17 +242,17 @@ export const ConfigFormatter: React.FC = () => {
             <div
               ref={outputRef}
               onScroll={handleOutputScroll}
-              className="flex-1 bg-[#0d1117] font-mono text-sm py-3 px-2 overflow-auto"
+              className="flex-1 bg-white dark:bg-[#0d1117] font-mono text-sm py-3 px-2 overflow-auto"
               style={{ lineHeight: '1.5rem', whiteSpace: 'pre' }}
             >
               {error ? (
-                <div className="text-[#f85149]">{error}</div>
+                <div className="text-red-600 dark:text-[#f85149]">{error}</div>
               ) : output ? (
-                <div className="text-[#c9d1d9]">
+                <div className="text-gray-900 dark:text-[#c9d1d9]">
                   {outputFormat === 'json' ? highlightJSON(output) : highlightYAML(output)}
                 </div>
               ) : (
-                <div className="text-[#484f58]">Formatted output will appear here...</div>
+                <div className="text-gray-400 dark:text-[#484f58]">Formatted output will appear here...</div>
               )}
             </div>
           </div>
@@ -260,9 +260,9 @@ export const ConfigFormatter: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-start px-4 py-2 bg-[#0d1117] border-t border-[#30363d]">
-        <div className="flex items-center gap-1 text-[10px] text-[#3fb950]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#3fb950]"></span>
+      <div className="flex items-center justify-start px-4 py-2 bg-white dark:bg-[#0d1117] border-t border-gray-200 dark:border-[#30363d]">
+        <div className="flex items-center gap-1 text-[10px] text-green-600 dark:text-[#3fb950]">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-[#3fb950]"></span>
           <span>Instant tools. No sign-up. No data sent.</span>
         </div>
       </div>

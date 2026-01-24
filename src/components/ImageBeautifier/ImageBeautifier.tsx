@@ -148,17 +148,17 @@ export const ImageBeautifier: React.FC = () => {
   }, [image, backgroundColor, gradientColor1, gradientColor2, useGradient, gradientRotation, borderRadius, padding, shadow]);
 
   return (
-    <div className="h-full flex bg-[#0d1117]">
+    <div className="h-full flex bg-white dark:bg-[#0d1117]">
       {/* Controls Panel */}
-      <div className="w-[540px] flex-shrink-0 border-r border-[#30363d] overflow-y-auto">
-        <div className="px-4 py-3 border-b border-[#30363d]">
-          <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Controls</span>
+      <div className="w-[540px] flex-shrink-0 border-r border-gray-200 dark:border-[#30363d] overflow-y-auto">
+        <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
+          <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Controls</span>
         </div>
         
         <div className="p-4 space-y-6">
           {/* Upload Image */}
           <div>
-            <label className="block text-xs font-medium text-[#8b949e] uppercase tracking-wider mb-3">
+            <label className="block text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider mb-3">
               Upload Image
             </label>
             <input
@@ -173,28 +173,28 @@ export const ImageBeautifier: React.FC = () => {
               onClick={() => fileInputRef.current?.click()}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
-              className="w-full flex flex-col items-center justify-center gap-2 px-4 py-6 rounded-lg border-2 border-dashed border-[#30363d] hover:border-[#58a6ff] transition-colors cursor-pointer"
+              className="w-full flex flex-col items-center justify-center gap-2 px-4 py-6 rounded-lg border-2 border-dashed border-gray-300 dark:border-[#30363d] hover:border-blue-500 dark:hover:border-[#58a6ff] transition-colors cursor-pointer"
             >
-              <Upload size={24} className="text-[#8b949e]" />
-              <span className="text-sm text-[#8b949e]">Drop an image here or click to upload</span>
+              <Upload size={24} className="text-gray-500 dark:text-[#8b949e]" />
+              <span className="text-sm text-gray-500 dark:text-[#8b949e]">Drop an image here or click to upload</span>
             </div>
           </div>
 
           {/* Background */}
           <div>
-            <label className="block text-xs font-medium text-[#8b949e] uppercase tracking-wider mb-3">
+            <label className="block text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider mb-3">
               Background
             </label>
             
             {/* Gradient/Solid Toggle */}
-            <div className="flex rounded-lg overflow-hidden border border-[#30363d] mb-4">
+            <div className="flex rounded-lg overflow-hidden border border-gray-300 dark:border-[#30363d] mb-4">
               <button
                 onClick={() => setUseGradient(true)}
                 className={clsx(
                   'flex-1 py-2 text-sm font-medium transition-colors',
                   useGradient
-                    ? 'bg-[#21262d] text-[#c9d1d9]'
-                    : 'bg-transparent text-[#8b949e] hover:text-[#c9d1d9]'
+                    ? 'bg-gray-100 dark:bg-[#21262d] text-gray-900 dark:text-[#c9d1d9]'
+                    : 'bg-transparent text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9]'
                 )}
               >
                 Gradient
@@ -204,8 +204,8 @@ export const ImageBeautifier: React.FC = () => {
                 className={clsx(
                   'flex-1 py-2 text-sm font-medium transition-colors',
                   !useGradient
-                    ? 'bg-[#21262d] text-[#c9d1d9]'
-                    : 'bg-transparent text-[#8b949e] hover:text-[#c9d1d9]'
+                    ? 'bg-gray-100 dark:bg-[#21262d] text-gray-900 dark:text-[#c9d1d9]'
+                    : 'bg-transparent text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9]'
                 )}
               >
                 Solid
@@ -225,7 +225,7 @@ export const ImageBeautifier: React.FC = () => {
             {useGradient && (
               <>
                 {/* Presets */}
-                <label className="block text-xs text-[#8b949e] mb-2">Presets</label>
+                <label className="block text-xs text-gray-500 dark:text-[#8b949e] mb-2">Presets</label>
                 <div className="grid grid-cols-4 gap-2 mb-4">
                   {gradientPresets.map((preset, index) => (
                     <button
@@ -243,7 +243,7 @@ export const ImageBeautifier: React.FC = () => {
                 {/* Start/End Color Pickers */}
                 <div className="flex items-center gap-3 mb-4">
                   <div>
-                    <label className="block text-xs text-[#8b949e] mb-1">Start Color</label>
+                    <label className="block text-xs text-gray-500 dark:text-[#8b949e] mb-1">Start Color</label>
                     <input
                       type="color"
                       value={gradientColor1}
@@ -252,7 +252,7 @@ export const ImageBeautifier: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-[#8b949e] mb-1">End Color</label>
+                    <label className="block text-xs text-gray-500 dark:text-[#8b949e] mb-1">End Color</label>
                     <input
                       type="color"
                       value={gradientColor2}
@@ -262,7 +262,7 @@ export const ImageBeautifier: React.FC = () => {
                   </div>
                   <button
                     onClick={swapColors}
-                    className="mt-4 p-2 rounded-lg bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9] transition-colors"
+                    className="mt-4 p-2 rounded-lg bg-gray-100 dark:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors"
                   >
                     <RefreshCw size={16} />
                   </button>
@@ -270,7 +270,7 @@ export const ImageBeautifier: React.FC = () => {
 
                 {/* Angle */}
                 <div className="mb-4">
-                  <label className="block text-xs text-[#8b949e] mb-2">Angle: {gradientRotation}°</label>
+                  <label className="block text-xs text-gray-500 dark:text-[#8b949e] mb-2">Angle: {gradientRotation}°</label>
                   <div className="flex gap-1 mb-2">
                     {anglePresets.map((angle) => (
                       <button
@@ -279,8 +279,8 @@ export const ImageBeautifier: React.FC = () => {
                         className={clsx(
                           'flex-1 py-1.5 text-xs rounded transition-colors',
                           gradientRotation === angle
-                            ? 'bg-[#388bfd]/20 text-[#58a6ff]'
-                            : 'bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9]'
+                            ? 'bg-blue-100 dark:bg-[#388bfd]/20 text-blue-600 dark:text-[#58a6ff]'
+                            : 'bg-gray-100 dark:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9]'
                         )}
                       >
                         {angle}°
@@ -301,7 +301,7 @@ export const ImageBeautifier: React.FC = () => {
 
             {!useGradient && (
               <div>
-                <label className="block text-xs text-[#8b949e] mb-2">Color</label>
+                <label className="block text-xs text-gray-500 dark:text-[#8b949e] mb-2">Color</label>
                 <input
                   type="color"
                   value={backgroundColor}
@@ -314,7 +314,7 @@ export const ImageBeautifier: React.FC = () => {
 
           {/* Padding */}
           <div>
-            <label className="block text-xs font-medium text-[#8b949e] uppercase tracking-wider mb-3">
+            <label className="block text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider mb-3">
               Padding
             </label>
             <div className="flex gap-1">
@@ -325,8 +325,8 @@ export const ImageBeautifier: React.FC = () => {
                   className={clsx(
                     'flex-1 py-2 text-xs rounded transition-colors',
                     padding === p
-                      ? 'bg-[#388bfd]/20 text-[#58a6ff]'
-                      : 'bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9]'
+                      ? 'bg-blue-100 dark:bg-[#388bfd]/20 text-blue-600 dark:text-[#58a6ff]'
+                      : 'bg-gray-100 dark:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9]'
                   )}
                 >
                   {p}
@@ -337,7 +337,7 @@ export const ImageBeautifier: React.FC = () => {
 
           {/* Corner Radius */}
           <div>
-            <label className="block text-xs font-medium text-[#8b949e] uppercase tracking-wider mb-3">
+            <label className="block text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider mb-3">
               Corner Radius: {borderRadius}px
             </label>
             <input
@@ -352,14 +352,14 @@ export const ImageBeautifier: React.FC = () => {
 
           {/* Shadow Toggle */}
           <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">
+            <label className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">
               Shadow
             </label>
             <button
               onClick={() => setShadow(!shadow)}
               className={clsx(
                 'w-12 h-6 rounded-full transition-colors relative',
-                shadow ? 'bg-[#58a6ff]' : 'bg-[#30363d]'
+                shadow ? 'bg-blue-500 dark:bg-[#58a6ff]' : 'bg-gray-300 dark:bg-[#30363d]'
               )}
             >
               <div
@@ -375,8 +375,8 @@ export const ImageBeautifier: React.FC = () => {
 
       {/* Preview Panel */}
       <div className="flex-1 flex flex-col">
-        <div className="px-4 py-3 border-b border-[#30363d] flex items-center justify-between">
-          <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Preview</span>
+        <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d] flex items-center justify-between">
+          <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Preview</span>
           {image && (
             <button
               onClick={handleDownload}
@@ -388,7 +388,7 @@ export const ImageBeautifier: React.FC = () => {
           )}
         </div>
         
-        <div className="flex-1 flex items-center justify-center bg-[#0d1117] overflow-auto p-8">
+        <div className="flex-1 flex items-center justify-center bg-white dark:bg-[#0d1117] overflow-auto p-8">
           {image ? (
             <canvas
               ref={canvasRef}
@@ -396,7 +396,7 @@ export const ImageBeautifier: React.FC = () => {
               style={{ boxShadow: shadow ? '0 25px 50px -12px rgba(0, 0, 0, 0.5)' : 'none' }}
             />
           ) : (
-            <div className="flex flex-col items-center justify-center text-[#8b949e]">
+            <div className="flex flex-col items-center justify-center text-gray-500 dark:text-[#8b949e]">
               <ImageIcon size={64} className="mb-4 opacity-30" strokeWidth={1} />
               <p className="text-sm">Upload an image to see the preview</p>
             </div>

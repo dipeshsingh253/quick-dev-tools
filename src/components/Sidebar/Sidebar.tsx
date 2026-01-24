@@ -34,21 +34,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
   return (
     <div
       className={clsx(
-        'h-full flex flex-col bg-[#0d1117] border-r border-[#30363d] transition-all duration-200',
+        'h-full flex flex-col bg-white dark:bg-[#0d1117] border-r border-gray-200 dark:border-[#30363d] transition-all duration-200',
         isCollapsed ? 'w-[52px]' : 'w-[200px]'
       )}
     >
       {/* Header */}
-      <div className="flex items-center px-3 py-4 border-b border-[#30363d]">
+      <div className="flex items-center px-3 py-4 border-b border-gray-200 dark:border-[#30363d]">
         {!isCollapsed ? (
           <div className="flex items-center justify-between w-full">
             <div>
-              <h1 className="text-sm font-semibold text-[#c9d1d9]">Quick Dev Kit</h1>
-              <span className="text-[10px] text-[#8b949e]">100% client-side</span>
+              <h1 className="text-sm font-semibold text-gray-900 dark:text-[#c9d1d9]">Quick Dev Kit</h1>
+              <span className="text-[10px] text-gray-500 dark:text-[#8b949e]">100% client-side</span>
             </div>
             <button
               onClick={() => setIsCollapsed(true)}
-              className="p-1 rounded hover:bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9]"
+              className="p-1 rounded hover:bg-gray-100 dark:hover:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9]"
             >
               <PanelLeftClose size={18} />
             </button>
@@ -56,7 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
         ) : (
           <button
             onClick={() => setIsCollapsed(false)}
-            className="p-1 rounded hover:bg-[#21262d] text-[#8b949e] hover:text-[#c9d1d9] mx-auto"
+            className="p-1 rounded hover:bg-gray-100 dark:hover:bg-[#21262d] text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9] mx-auto"
           >
             <PanelLeft size={18} />
           </button>
@@ -75,13 +75,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
               className={clsx(
                 'w-full flex items-center gap-3 px-4 py-3 transition-colors relative',
                 isActive
-                  ? 'text-[#58a6ff] bg-[#21262d]/50'
-                  : 'text-[#8b949e] hover:bg-[#21262d]/30 hover:text-[#c9d1d9]'
+                  ? 'text-blue-600 dark:text-[#58a6ff] bg-blue-50 dark:bg-[#21262d]/50'
+                  : 'text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9]'
               )}
               title={isCollapsed ? tool.name : undefined}
             >
               {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-[#58a6ff] rounded-r" />
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-blue-600 dark:bg-[#58a6ff] rounded-r" />
               )}
               <Icon size={20} />
               {!isCollapsed && <span className="text-sm">{tool.name}</span>}
@@ -91,11 +91,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
       </div>
 
       {/* Footer */}
-      <div className="border-t border-[#30363d] py-2">
+      <div className="border-t border-gray-200 dark:border-[#30363d] py-2">
         <button
           onClick={toggleTheme}
           className={clsx(
-            'w-full flex items-center gap-3 px-4 py-3 text-[#8b949e] hover:bg-[#21262d]/30 hover:text-[#c9d1d9] transition-colors'
+            'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
           )}
           title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         >
@@ -107,7 +107,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
           target="_blank"
           rel="noopener noreferrer"
           className={clsx(
-            'w-full flex items-center gap-3 px-4 py-3 text-[#8b949e] hover:bg-[#21262d]/30 hover:text-[#c9d1d9] transition-colors'
+            'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
           )}
           title="GitHub"
         >
@@ -117,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
         <a
           href="#"
           className={clsx(
-            'w-full flex items-center gap-3 px-4 py-3 text-[#8b949e] hover:bg-[#21262d]/30 hover:text-[#c9d1d9] transition-colors'
+            'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
           )}
           title="Support"
         >
@@ -128,9 +128,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
 
       {/* Tagline */}
       {!isCollapsed && (
-        <div className="px-3 py-3 border-t border-[#30363d]">
-          <div className="flex items-center gap-1 text-[10px] text-[#3fb950]">
-            <span className="w-2 h-2 rounded-full bg-[#3fb950]"></span>
+        <div className="px-3 py-3 border-t border-gray-200 dark:border-[#30363d]">
+          <div className="flex items-center gap-1 text-[10px] text-green-600 dark:text-[#3fb950]">
+            <span className="w-2 h-2 rounded-full bg-green-600 dark:bg-[#3fb950]"></span>
             Instant tools. No sign-up. No data sent.
           </div>
         </div>

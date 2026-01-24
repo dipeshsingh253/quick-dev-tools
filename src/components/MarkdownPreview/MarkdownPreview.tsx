@@ -88,10 +88,10 @@ export const MarkdownPreview: React.FC = () => {
   const lineCount = getLineCount(content);
 
   return (
-    <div className="h-full flex flex-col bg-[#0d1117]">
+    <div className="h-full flex flex-col bg-white dark:bg-[#0d1117]">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#30363d]">
-        <h2 className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Markdown Preview</h2>
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
+        <h2 className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Markdown Preview</h2>
         <div className="flex items-center gap-1">
           <button
             onClick={() => setMode('edit')}
@@ -141,11 +141,11 @@ export const MarkdownPreview: React.FC = () => {
         {(mode === 'edit' || mode === 'split') && (
           <div className={clsx(
             'flex flex-col min-w-0',
-            mode === 'split' ? 'flex-1 border-r border-[#30363d]' : 'flex-1'
+            mode === 'split' ? 'flex-1 border-r border-gray-200 dark:border-[#30363d]' : 'flex-1'
           )}>
             {/* Editor Header */}
-            <div className="px-4 py-2 border-b border-[#30363d]">
-              <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Editor</span>
+            <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d]">
+              <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Editor</span>
             </div>
             
             {/* Editor Content */}
@@ -153,7 +153,7 @@ export const MarkdownPreview: React.FC = () => {
               {/* Line Numbers */}
               <div 
                 ref={lineNumbersRef}
-                className="py-3 bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
+                className="py-3 bg-white dark:bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
                 style={{ lineHeight: '1.5rem' }}
               >
                 {renderLineNumbers(lineCount)}
@@ -165,7 +165,7 @@ export const MarkdownPreview: React.FC = () => {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 onScroll={handleEditorScroll}
-                className="flex-1 bg-[#0d1117] text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
+                className="flex-1 bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
                 style={{ lineHeight: '1.5rem' }}
                 spellCheck={false}
               />
@@ -180,56 +180,56 @@ export const MarkdownPreview: React.FC = () => {
             mode === 'split' ? 'flex-1' : 'flex-1'
           )}>
             {/* Preview Header */}
-            <div className="px-4 py-2 border-b border-[#30363d]">
-              <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Preview</span>
+            <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d]">
+              <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Preview</span>
             </div>
             
             {/* Preview Content */}
             <div
               ref={previewRef}
-              className="flex-1 overflow-auto p-6 bg-[#0d1117]"
+              className="flex-1 overflow-auto p-6 bg-white dark:bg-[#0d1117]"
             >
               <div className="markdown-preview">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
-                    h1: ({children}) => <h1 className="text-3xl font-bold text-[#c9d1d9] mb-4 pb-2 border-b border-[#30363d]">{children}</h1>,
-                    h2: ({children}) => <h2 className="text-xl font-semibold text-[#c9d1d9] mt-6 mb-3">{children}</h2>,
-                    h3: ({children}) => <h3 className="text-lg font-semibold text-[#c9d1d9] mt-4 mb-2">{children}</h3>,
-                    p: ({children}) => <p className="text-[#c9d1d9] mb-4 leading-relaxed">{children}</p>,
-                    strong: ({children}) => <strong className="text-[#58a6ff] font-semibold">{children}</strong>,
-                    em: ({children}) => <em className="text-[#c9d1d9] italic">{children}</em>,
-                    ul: ({children}) => <ul className="list-disc list-inside mb-4 text-[#c9d1d9] space-y-1">{children}</ul>,
-                    ol: ({children}) => <ol className="list-decimal list-inside mb-4 text-[#c9d1d9] space-y-1">{children}</ol>,
-                    li: ({children}) => <li className="text-[#c9d1d9]">{children}</li>,
-                    a: ({href, children}) => <a href={href} className="text-[#58a6ff] hover:underline">{children}</a>,
-                    blockquote: ({children}) => <blockquote className="border-l-4 border-[#30363d] pl-4 my-4 text-[#8b949e] italic">{children}</blockquote>,
+                    h1: ({children}) => <h1 className="text-3xl font-bold text-gray-900 dark:text-[#c9d1d9] mb-4 pb-2 border-b border-gray-200 dark:border-[#30363d]">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-xl font-semibold text-gray-900 dark:text-[#c9d1d9] mt-6 mb-3">{children}</h2>,
+                    h3: ({children}) => <h3 className="text-lg font-semibold text-gray-900 dark:text-[#c9d1d9] mt-4 mb-2">{children}</h3>,
+                    p: ({children}) => <p className="text-gray-900 dark:text-[#c9d1d9] mb-4 leading-relaxed">{children}</p>,
+                    strong: ({children}) => <strong className="text-blue-600 dark:text-[#58a6ff] font-semibold">{children}</strong>,
+                    em: ({children}) => <em className="text-gray-900 dark:text-[#c9d1d9] italic">{children}</em>,
+                    ul: ({children}) => <ul className="list-disc list-inside mb-4 text-gray-900 dark:text-[#c9d1d9] space-y-1">{children}</ul>,
+                    ol: ({children}) => <ol className="list-decimal list-inside mb-4 text-gray-900 dark:text-[#c9d1d9] space-y-1">{children}</ol>,
+                    li: ({children}) => <li className="text-gray-900 dark:text-[#c9d1d9]">{children}</li>,
+                    a: ({href, children}) => <a href={href} className="text-blue-600 dark:text-[#58a6ff] hover:underline">{children}</a>,
+                    blockquote: ({children}) => <blockquote className="border-l-4 border-gray-300 dark:border-[#30363d] pl-4 my-4 text-gray-500 dark:text-[#8b949e] italic">{children}</blockquote>,
                     code: ({className, children}) => {
                       const isBlock = className?.includes('language-');
                       if (isBlock) {
                         const language = className?.replace('language-', '') || '';
                         return (
-                          <div className="my-4 rounded-md overflow-hidden bg-[#161b22] border border-[#30363d]">
+                          <div className="my-4 rounded-md overflow-hidden bg-gray-100 dark:bg-[#161b22] border border-gray-200 dark:border-[#30363d]">
                             <pre className="p-4 overflow-x-auto">
-                              <code className="text-sm font-mono text-[#c9d1d9]">{children}</code>
+                              <code className="text-sm font-mono text-gray-900 dark:text-[#c9d1d9]">{children}</code>
                             </pre>
                           </div>
                         );
                       }
-                      return <code className="bg-[#161b22] text-[#f97583] px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>;
+                      return <code className="bg-gray-100 dark:bg-[#161b22] text-red-600 dark:text-[#f97583] px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>;
                     },
                     pre: ({children}) => <>{children}</>,
-                    hr: () => <hr className="my-6 border-[#30363d]" />,
+                    hr: () => <hr className="my-6 border-gray-200 dark:border-[#30363d]" />,
                     table: ({children}) => (
                       <div className="my-4 overflow-x-auto">
-                        <table className="w-full border-collapse border border-[#30363d]">{children}</table>
+                        <table className="w-full border-collapse border border-gray-200 dark:border-[#30363d]">{children}</table>
                       </div>
                     ),
-                    thead: ({children}) => <thead className="bg-[#161b22]">{children}</thead>,
+                    thead: ({children}) => <thead className="bg-gray-100 dark:bg-[#161b22]">{children}</thead>,
                     tbody: ({children}) => <tbody>{children}</tbody>,
-                    tr: ({children}) => <tr className="border-b border-[#30363d]">{children}</tr>,
-                    th: ({children}) => <th className="px-4 py-2 text-left text-[#c9d1d9] font-semibold border-r border-[#30363d] last:border-r-0">{children}</th>,
-                    td: ({children}) => <td className="px-4 py-2 text-[#c9d1d9] border-r border-[#30363d] last:border-r-0">{children}</td>,
+                    tr: ({children}) => <tr className="border-b border-gray-200 dark:border-[#30363d]">{children}</tr>,
+                    th: ({children}) => <th className="px-4 py-2 text-left text-gray-900 dark:text-[#c9d1d9] font-semibold border-r border-gray-200 dark:border-[#30363d] last:border-r-0">{children}</th>,
+                    td: ({children}) => <td className="px-4 py-2 text-gray-900 dark:text-[#c9d1d9] border-r border-gray-200 dark:border-[#30363d] last:border-r-0">{children}</td>,
                   }}
                 >
                   {content}

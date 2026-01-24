@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (.dark &);
+
 @theme {
   --color-gh-light-bg: #ffffff;
   --color-gh-light-bg-secondary: #f6f8fa;

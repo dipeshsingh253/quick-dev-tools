@@ -425,23 +425,23 @@ export const GitDiff: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#0d1117]">
+    <div className="h-full flex flex-col bg-white dark:bg-[#0d1117]">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#30363d]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
         <div className="flex items-center gap-4">
           {view === 'input' ? (
-            <h2 className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Text Diff</h2>
+            <h2 className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Text Diff</h2>
           ) : (
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setView('input')}
-                className="flex items-center gap-1 text-xs text-[#8b949e] hover:text-[#c9d1d9] transition-colors"
+                className="flex items-center gap-1 text-xs text-gray-500 dark:text-[#8b949e] hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors"
               >
                 <ArrowLeft size={14} />
                 <span>Edit inputs</span>
               </button>
-              <span className="text-[#30363d]">|</span>
-              <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Diff Result</span>
+              <span className="text-gray-300 dark:text-[#30363d]">|</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Diff Result</span>
             </div>
           )}
         </div>
@@ -449,7 +449,7 @@ export const GitDiff: React.FC = () => {
         <div className="flex items-center gap-2">
           {view === 'input' ? (
             <>
-              <button className="flex items-center gap-1 px-3 py-1.5 rounded text-xs text-[#c9d1d9] bg-[#21262d] border border-[#30363d] hover:border-[#8b949e] transition-colors">
+              <button className="flex items-center gap-1 px-3 py-1.5 rounded text-xs text-gray-900 dark:text-[#c9d1d9] bg-gray-100 dark:bg-[#21262d] border border-gray-300 dark:border-[#30363d] hover:border-gray-400 dark:hover:border-[#8b949e] transition-colors">
                 <span>{language}</span>
                 <ChevronDown size={14} />
               </button>
@@ -496,14 +496,14 @@ export const GitDiff: React.FC = () => {
         {view === 'input' ? (
           <>
             {/* Original Panel */}
-            <div className="flex-1 flex flex-col border-r border-[#30363d] min-w-0">
-              <div className="px-4 py-2 border-b border-[#30363d]">
-                <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Original</span>
+            <div className="flex-1 flex flex-col border-r border-gray-200 dark:border-[#30363d] min-w-0">
+              <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d]">
+                <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Original</span>
               </div>
               <div className="flex-1 flex overflow-hidden">
                 <div 
                   ref={originalLineNumbersRef}
-                  className="py-3 bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
+                  className="py-3 bg-white dark:bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
                   style={{ lineHeight: '1.5rem' }}
                 >
                   {renderLineNumbers(originalLineCount)}
@@ -513,7 +513,7 @@ export const GitDiff: React.FC = () => {
                   value={original}
                   onChange={(e) => setOriginal(e.target.value)}
                   onScroll={handleOriginalScroll}
-                  className="flex-1 bg-[#0d1117] text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
+                  className="flex-1 bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
                   style={{ lineHeight: '1.5rem' }}
                   spellCheck={false}
                 />
@@ -522,13 +522,13 @@ export const GitDiff: React.FC = () => {
 
             {/* Modified Panel */}
             <div className="flex-1 flex flex-col min-w-0">
-              <div className="px-4 py-2 border-b border-[#30363d]">
-                <span className="text-xs font-medium text-[#8b949e] uppercase tracking-wider">Modified</span>
+              <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d]">
+                <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Modified</span>
               </div>
               <div className="flex-1 flex overflow-hidden">
                 <div 
                   ref={modifiedLineNumbersRef}
-                  className="py-3 bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
+                  className="py-3 bg-white dark:bg-[#0d1117] text-xs font-mono overflow-hidden min-w-[40px]"
                   style={{ lineHeight: '1.5rem' }}
                 >
                   {renderLineNumbers(modifiedLineCount)}
@@ -538,7 +538,7 @@ export const GitDiff: React.FC = () => {
                   value={modified}
                   onChange={(e) => setModified(e.target.value)}
                   onScroll={handleModifiedScroll}
-                  className="flex-1 bg-[#0d1117] text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
+                  className="flex-1 bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#c9d1d9] font-mono text-sm resize-none outline-none py-3 px-2 overflow-auto"
                   style={{ lineHeight: '1.5rem' }}
                   spellCheck={false}
                 />
@@ -548,9 +548,9 @@ export const GitDiff: React.FC = () => {
         ) : diffMode === 'split' ? (
           <>
             {/* Split Diff - Left (Original) */}
-            <div className="flex-1 flex flex-col border-r border-[#30363d] min-w-0">
-              <div className="px-4 py-2 border-b border-[#30363d] bg-[#161b22]">
-                <span className="text-xs font-medium text-[#8b949e]">Original</span>
+            <div className="flex-1 flex flex-col border-r border-gray-200 dark:border-[#30363d] min-w-0">
+              <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d] bg-gray-100 dark:bg-[#161b22]">
+                <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e]">Original</span>
               </div>
               <div 
                 ref={leftDiffRef}
@@ -564,8 +564,8 @@ export const GitDiff: React.FC = () => {
 
             {/* Split Diff - Right (Modified) */}
             <div className="flex-1 flex flex-col min-w-0">
-              <div className="px-4 py-2 border-b border-[#30363d] bg-[#161b22]">
-                <span className="text-xs font-medium text-[#8b949e]">Modified</span>
+              <div className="px-4 py-2 border-b border-gray-200 dark:border-[#30363d] bg-gray-100 dark:bg-[#161b22]">
+                <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e]">Modified</span>
               </div>
               <div 
                 ref={rightDiffRef}
@@ -588,12 +588,12 @@ export const GitDiff: React.FC = () => {
       </div>
 
       {/* Footer Hint */}
-      <div className="flex items-center justify-center px-4 py-2 bg-[#0d1117] border-t border-[#30363d]">
-        <span className="text-xs text-[#6e7681]">
+      <div className="flex items-center justify-center px-4 py-2 bg-white dark:bg-[#0d1117] border-t border-gray-200 dark:border-[#30363d]">
+        <span className="text-xs text-gray-400 dark:text-[#6e7681]">
           {view === 'input' ? (
-            <>Press <kbd className="px-1.5 py-0.5 mx-1 rounded bg-[#21262d] border border-[#30363d] text-[#8b949e]">Ctrl+Enter</kbd> to compare</>
+            <>Press <kbd className="px-1.5 py-0.5 mx-1 rounded bg-gray-100 dark:bg-[#21262d] border border-gray-300 dark:border-[#30363d] text-gray-500 dark:text-[#8b949e]">Ctrl+Enter</kbd> to compare</>
           ) : (
-            <>Press <kbd className="px-1.5 py-0.5 mx-1 rounded bg-[#21262d] border border-[#30363d] text-[#8b949e]">Esc</kbd> to return to input</>
+            <>Press <kbd className="px-1.5 py-0.5 mx-1 rounded bg-gray-100 dark:bg-[#21262d] border border-gray-300 dark:border-[#30363d] text-gray-500 dark:text-[#8b949e]">Esc</kbd> to return to input</>
           )}
         </span>
       </div>
