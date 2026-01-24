@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "quick-dev-tools-on",
     "public": "dist",
     "ignore": [
       "firebase.json",
