@@ -11,6 +11,7 @@ import {
   Moon,
   Sun,
   Github,
+  Twitter,
   Heart
 } from 'lucide-react';
 import clsx from 'clsx';
@@ -92,16 +93,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
 
       {/* Footer */}
       <div className="border-t border-gray-200 dark:border-[#30363d] py-2">
-        <button
-          onClick={toggleTheme}
-          className={clsx(
-            'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
-          )}
-          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          {!isCollapsed && <span className="text-sm">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
-        </button>
         <a
           href="https://github.com"
           target="_blank"
@@ -112,29 +103,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
           title="GitHub"
         >
           <Github size={20} />
-          {!isCollapsed && <span className="text-sm">GitHub</span>}
+          {!isCollapsed && <span className="text-sm">@dipeshsingh253</span>}
         </a>
         <a
           href="#"
           className={clsx(
             'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
           )}
-          title="Support"
+          title="Twitter"
         >
-          <Heart size={20} />
-          {!isCollapsed && <span className="text-sm">Support</span>}
+          <Twitter size={20} />
+          {!isCollapsed && <span className="text-sm">@dipeshdotdev</span>}
         </a>
+        <button
+          onClick={toggleTheme}
+          className={clsx(
+            'w-full flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9] transition-colors'
+          )}
+          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {!isCollapsed && <span className="text-sm">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
+        </button>
       </div>
 
       {/* Tagline */}
-      {!isCollapsed && (
+      {/* {!isCollapsed && (
         <div className="px-3 py-3 border-t border-gray-200 dark:border-[#30363d]">
           <div className="flex items-center gap-1 text-[10px] text-green-600 dark:text-[#3fb950]">
             <span className="w-2 h-2 rounded-full bg-green-600 dark:bg-[#3fb950]"></span>
-            Instant tools. No sign-up. No data sent.
+            Instant tools. No sign-up. No data sent to any server.
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

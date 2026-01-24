@@ -55,6 +55,33 @@ export const ImageBeautifier: React.FC = () => {
     e.preventDefault();
   }, []);
 
+  const handlePaste = useCallback((e: ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.startsWith('image/')) {
+        const blob = item.getAsFile();
+        if (blob) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            setImage(event.target?.result as string);
+          };
+          reader.readAsDataURL(blob);
+          break;
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('paste', handlePaste);
+    return () => {
+      document.removeEventListener('paste', handlePaste);
+    };
+  }, [handlePaste]);
+
   const handleDownload = () => {
     if (!canvasRef.current || !image) return;
 
@@ -176,7 +203,7 @@ export const ImageBeautifier: React.FC = () => {
               className="w-full flex flex-col items-center justify-center gap-2 px-4 py-6 rounded-lg border-2 border-dashed border-gray-300 dark:border-[#30363d] hover:border-blue-500 dark:hover:border-[#58a6ff] transition-colors cursor-pointer"
             >
               <Upload size={24} className="text-gray-500 dark:text-[#8b949e]" />
-              <span className="text-sm text-gray-500 dark:text-[#8b949e]">Drop an image here or click to upload</span>
+              <span className="text-sm text-gray-500 dark:text-[#8b949e]">Drop an image here, click to upload, or paste from clipboard</span>
             </div>
           </div>
 
