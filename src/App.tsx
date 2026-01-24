@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { ConfigFormatter } from './components/ConfigFormatter/ConfigFormatter';
 import { MarkdownPreview } from './components/MarkdownPreview/MarkdownPreview';
 import { GitDiff } from './components/GitDiff/GitDiff';
 import { ImageBeautifier } from './components/ImageBeautifier/ImageBeautifier';
+import { RegexChecker } from './components/RegexChecker/RegexChecker';
+import { Decoder } from './components/Decoder/Decoder';
+import { TimestampConverter } from './components/TimestampConverter/TimestampConverter';
+import { UuidHashGenerator } from './components/UuidHashGenerator/UuidHashGenerator';
+import { TextCaseConverter } from './components/TextCaseConverter/TextCaseConverter';
+import { UrlInspector } from './components/UrlInspector/UrlInspector';
 import type { ToolType } from './types';
 
 function AppContent() {
@@ -20,11 +26,11 @@ function AppContent() {
         return;
       }
 
-      // Ctrl/Cmd + 1-4 to switch tools
-      if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '4') {
+      // Ctrl/Cmd + 1-0 to switch tools
+      if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '0') {
         e.preventDefault();
-        const tools: ToolType[] = ['config', 'markdown', 'diff', 'image'];
-        const toolIndex = parseInt(e.key) - 1;
+        const tools: ToolType[] = ['config', 'markdown', 'diff', 'image', 'regex', 'decoder', 'timestamp', 'generator', 'case', 'url'];
+        const toolIndex = parseInt(e.key) === 0 ? 9 : parseInt(e.key) - 1;
         setActiveTool(tools[toolIndex]);
       }
     };
@@ -43,6 +49,18 @@ function AppContent() {
         return <GitDiff />;
       case 'image':
         return <ImageBeautifier />;
+      case 'regex':
+        return <RegexChecker />;
+      case 'decoder':
+        return <Decoder />;
+      case 'timestamp':
+        return <TimestampConverter />;
+      case 'generator':
+        return <UuidHashGenerator />;
+      case 'case':
+        return <TextCaseConverter />;
+      case 'url':
+        return <UrlInspector />;
       default:
         return <ConfigFormatter />;
     }

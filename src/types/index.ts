@@ -1,4 +1,4 @@
-export type ToolType = 'config' | 'markdown' | 'diff' | 'image';
+export type ToolType = 'config' | 'markdown' | 'diff' | 'image' | 'regex' | 'decoder' | 'timestamp' | 'generator' | 'case' | 'url';
 
 export type Theme = 'light' | 'dark';
 
@@ -38,4 +38,44 @@ export interface ImageBeautifierState {
   gradientRotation: number;
   borderRadius: number;
   padding: number;
+}
+
+export interface RegexCheckerState {
+  pattern: string;
+  testString: string;
+  flags: {
+    g: boolean;
+    i: boolean;
+    m: boolean;
+    s: boolean;
+    u: boolean;
+    y: boolean;
+  };
+}
+
+export interface DecoderState {
+  input: string;
+  detectedType: string | null;
+  decodedOutput: string;
+  error: string | null;
+}
+
+export interface TimestampConverterState {
+  input: string;
+  targetFormat: 'unix' | 'iso' | 'rfc' | 'human';
+  targetTimezone: string;
+}
+
+export interface UuidHashGeneratorState {
+  uuid: string;
+  sha256: string;
+  hashInput: string;
+}
+
+export interface TextCaseConverterState {
+  input: string;
+}
+
+export interface UrlInspectorState {
+  input: string;
 }

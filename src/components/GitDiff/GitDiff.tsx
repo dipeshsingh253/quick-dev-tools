@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ArrowLeft, Columns, AlignJustify, ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 import type { DiffView, DiffMode } from '../../types';
+import { useTheme } from '../../context/ThemeContext';
 
 const defaultContent = `# Sample Python Code
 def fibonacci(n):
@@ -22,8 +23,8 @@ interface Token {
   value: string;
 }
 
-// Color map for tokens
-const tokenColors: Record<TokenType, string> = {
+// Color map for tokens - dark mode
+const tokenColorsDark: Record<TokenType, string> = {
   keyword: '#ff7b72',    // Red/orange for keywords
   string: '#a5d6ff',     // Light blue for strings
   number: '#79c0ff',     // Cyan for numbers
@@ -32,6 +33,18 @@ const tokenColors: Record<TokenType, string> = {
   operator: '#ff7b72',   // Red for operators
   punctuation: '#c9d1d9', // Light gray for punctuation
   text: '#c9d1d9',       // Default text color
+};
+
+// Color map for tokens - light mode
+const tokenColorsLight: Record<TokenType, string> = {
+  keyword: '#cf222e',    // Red for keywords
+  string: '#0a3069',     // Dark blue for strings
+  number: '#0550ae',     // Blue for numbers
+  comment: '#6e7781',    // Gray for comments
+  function: '#8250df',   // Purple for functions
+  operator: '#cf222e',   // Red for operators
+  punctuation: '#24292f', // Dark gray for punctuation
+  text: '#24292f',       // Default text color
 };
 
 // Keywords for different languages
@@ -170,10 +183,11 @@ const tokenizeLine = (line: string): Token[] => {
 };
 
 // Render highlighted line as React elements
-const highlightLine = (line: string): React.ReactNode => {
+const highlightLine = (line: string, isDark: boolean): React.ReactNode => {
   if (!line) return '\u00A0';
   
   const tokens = tokenizeLine(line);
+  const tokenColors = isDark ? tokenColorsDark : tokenColorsLight;
   
   return tokens.map((token, idx) => (
     <span key={idx} style={{ color: tokenColors[token.type] }}>
@@ -213,7 +227,6 @@ const computeDiff = (oldText: string, newText: string): DiffLine[] => {
   }
   
   // Backtrack to find diff
-  const diff: DiffLine[] = [];
   let i = m, j = n;
   const tempDiff: DiffLine[] = [];
   
@@ -270,11 +283,13 @@ const computeSplitDiff = (oldText: string, newText: string): { left: DiffLine[],
 };
 
 export const GitDiff: React.FC = () => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const [original, setOriginal] = useState(defaultContent);
   const [modified, setModified] = useState(defaultContent);
   const [view, setView] = useState<DiffView>('input');
   const [diffMode, setDiffMode] = useState<DiffMode>('split');
-  const [language, setLanguage] = useState('Auto-detect');
+  const [language] = useState('Auto-detect');
   const originalRef = useRef<HTMLTextAreaElement>(null);
   const modifiedRef = useRef<HTMLTextAreaElement>(null);
   const originalLineNumbersRef = useRef<HTMLDivElement>(null);
@@ -351,9 +366,9 @@ export const GitDiff: React.FC = () => {
   const getLineBackground = (type: DiffLineType) => {
     switch (type) {
       case 'added':
-        return 'bg-[#2ea04326]';
+        return isDark ? 'bg-[#2ea04326]' : 'bg-[#dafbe1]';
       case 'removed':
-        return 'bg-[#f8514926]';
+        return isDark ? 'bg-[#f8514926]' : 'bg-[#ffebe9]';
       default:
         return '';
     }
@@ -362,9 +377,9 @@ export const GitDiff: React.FC = () => {
   const getLineNumBackground = (type: DiffLineType) => {
     switch (type) {
       case 'added':
-        return 'bg-[#2ea0431a]';
+        return isDark ? 'bg-[#2ea0431a]' : 'bg-[#ccffd8]';
       case 'removed':
-        return 'bg-[#f851491a]';
+        return isDark ? 'bg-[#f851491a]' : 'bg-[#ffd7d5]';
       default:
         return '';
     }
@@ -373,24 +388,28 @@ export const GitDiff: React.FC = () => {
   const getLineNumColor = (type: DiffLineType) => {
     switch (type) {
       case 'added':
-        return 'text-[#3fb950]';
+        return isDark ? 'text-[#3fb950]' : 'text-[#1a7f37]';
       case 'removed':
-        return 'text-[#f85149]';
+        return isDark ? 'text-[#f85149]' : 'text-[#cf222e]';
       default:
-        return 'text-[#6e7681]';
+        return isDark ? 'text-[#6e7681]' : 'text-[#57606a]';
     }
   };
 
   const renderDiffLine = (line: DiffLine, index: number) => {
     const prefix = line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ';
-    const prefixColor = line.type === 'added' ? 'text-[#3fb950]' : line.type === 'removed' ? 'text-[#f85149]' : 'text-[#6e7681]';
+    const prefixColor = line.type === 'added' 
+      ? (isDark ? 'text-[#3fb950]' : 'text-[#1a7f37]') 
+      : line.type === 'removed' 
+        ? (isDark ? 'text-[#f85149]' : 'text-[#cf222e]') 
+        : (isDark ? 'text-[#6e7681]' : 'text-[#57606a]');
     
     return (
       <div key={index} className={clsx('flex', getLineBackground(line.type))} style={{ minHeight: '1.5rem' }}>
         <div className={clsx('w-12 text-right pr-2 select-none text-xs flex-shrink-0', getLineNumBackground(line.type), getLineNumColor(line.type))}>
           {line.oldLineNum || ''}
         </div>
-        <div className={clsx('w-12 text-right pr-2 select-none text-xs flex-shrink-0 border-r border-[#30363d]', getLineNumBackground(line.type), getLineNumColor(line.type))}>
+        <div className={clsx('w-12 text-right pr-2 select-none text-xs flex-shrink-0 border-r border-gray-200 dark:border-[#30363d]', getLineNumBackground(line.type), getLineNumColor(line.type))}>
           {line.newLineNum || ''}
         </div>
         <div className={clsx('w-6 text-center flex-shrink-0', prefixColor)}>{prefix}</div>
@@ -398,7 +417,7 @@ export const GitDiff: React.FC = () => {
           className="flex-1 pr-4"
           style={{ whiteSpace: 'pre' }}
         >
-          {highlightLine(line.content)}
+          {highlightLine(line.content, isDark)}
         </div>
       </div>
     );
@@ -407,7 +426,7 @@ export const GitDiff: React.FC = () => {
   const renderSplitDiffLine = (line: DiffLine, index: number, side: 'left' | 'right') => {
     const lineNum = side === 'left' ? line.oldLineNum : line.newLineNum;
     const isEmpty = !line.content && !lineNum;
-    const bgClass = isEmpty ? 'bg-[#161b22]' : getLineBackground(line.type);
+    const bgClass = isEmpty ? (isDark ? 'bg-[#161b22]' : 'bg-gray-100') : getLineBackground(line.type);
     
     return (
       <div key={index} className={clsx('flex', bgClass)} style={{ minHeight: '1.5rem' }}>
@@ -418,7 +437,7 @@ export const GitDiff: React.FC = () => {
           className="flex-1 pl-2 pr-4"
           style={{ whiteSpace: 'pre' }}
         >
-          {highlightLine(line.content)}
+          {highlightLine(line.content, isDark)}
         </div>
       </div>
     );

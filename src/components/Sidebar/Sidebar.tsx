@@ -12,7 +12,12 @@ import {
   Sun,
   Github,
   Twitter,
-  Heart
+  Regex,
+  LockOpen,
+  Clock,
+  Key,
+  Type,
+  Link
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -26,6 +31,12 @@ const tools = [
   { id: 'markdown' as ToolType, name: 'Markdown Preview', icon: FileText },
   { id: 'diff' as ToolType, name: 'Text Diff', icon: GitCompareArrows },
   { id: 'image' as ToolType, name: 'Image Beautifier', icon: ImageIcon },
+  { id: 'regex' as ToolType, name: 'Regex Checker', icon: Regex },
+  { id: 'decoder' as ToolType, name: 'Decoder', icon: LockOpen },
+  { id: 'timestamp' as ToolType, name: 'Timestamp', icon: Clock },
+  { id: 'generator' as ToolType, name: 'UUID/Hash', icon: Key },
+  { id: 'case' as ToolType, name: 'Case Converter', icon: Type },
+  { id: 'url' as ToolType, name: 'URL Inspector', icon: Link },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) => {
@@ -44,7 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
         {!isCollapsed ? (
           <div className="flex items-center justify-between w-full">
             <div>
-              <h1 className="text-sm font-semibold text-gray-900 dark:text-[#c9d1d9]">Quick Dev Kit</h1>
+              <h1 className="text-sm font-semibold text-gray-900 dark:text-[#c9d1d9]">Quick Dev Tools</h1>
               <span className="text-[10px] text-gray-500 dark:text-[#8b949e]">100% client-side</span>
             </div>
             <button

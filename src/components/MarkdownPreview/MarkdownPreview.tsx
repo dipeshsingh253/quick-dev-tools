@@ -207,7 +207,6 @@ export const MarkdownPreview: React.FC = () => {
                     code: ({className, children}) => {
                       const isBlock = className?.includes('language-');
                       if (isBlock) {
-                        const language = className?.replace('language-', '') || '';
                         return (
                           <div className="my-4 rounded-md overflow-hidden bg-gray-100 dark:bg-[#161b22] border border-gray-200 dark:border-[#30363d]">
                             <pre className="p-4 overflow-x-auto">
