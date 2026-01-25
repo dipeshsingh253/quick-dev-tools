@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check, Key, RefreshCw, Hash } from 'lucide-react';
 import clsx from 'clsx';
+import type { UuidHashGeneratorState } from '../../types';
 
 type HashAlgorithm = 'sha256' | 'md5';
 

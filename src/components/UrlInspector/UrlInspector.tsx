@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Copy, Check, X, Link as LinkIcon } from 'lucide-react';
 import clsx from 'clsx';
+import type { UrlInspectorState } from '../../types';
 
 export const UrlInspector: React.FC = () => {
   const [input, setInput] = useState('');
