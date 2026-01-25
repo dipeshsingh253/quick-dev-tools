@@ -17,7 +17,7 @@ export const RegexChecker: React.FC = () => {
   const [matches, setMatches] = useState<RegExpMatchArray[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     // Load from localStorage
