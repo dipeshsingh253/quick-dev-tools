@@ -96,6 +96,12 @@ export const ImageBeautifier: React.FC = () => {
     if (!canvasRef.current || !image) return;
 
     try {
+      // Check if Clipboard API is supported
+      if (!navigator.clipboard || !ClipboardItem) {
+        alert('Copy to clipboard is not supported in this browser. Please use the Download button instead.');
+        return;
+      }
+
       const canvas = canvasRef.current;
       
       // Convert canvas to blob using Promise-based approach
@@ -115,6 +121,7 @@ export const ImageBeautifier: React.FC = () => {
       ]);
     } catch (err) {
       console.error('Failed to copy image:', err);
+      alert('Failed to copy image to clipboard. Please try downloading instead.');
     }
   };
 
