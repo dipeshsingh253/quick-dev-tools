@@ -97,7 +97,7 @@ export const ImageBeautifier: React.FC = () => {
 
     try {
       // Check if Clipboard API is supported
-      if (!navigator.clipboard || !ClipboardItem) {
+      if (!navigator.clipboard || !window.ClipboardItem) {
         alert('Copy to clipboard is not supported in this browser. Please use the Download button instead.');
         return;
       }
@@ -115,7 +115,7 @@ export const ImageBeautifier: React.FC = () => {
       
       // Use Clipboard API to copy the image
       await navigator.clipboard.write([
-        new ClipboardItem({
+        new window.ClipboardItem({
           'image/png': blob
         })
       ]);
