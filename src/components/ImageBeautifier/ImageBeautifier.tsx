@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Upload, Download, Image as ImageIcon, RefreshCw } from 'lucide-react';
+import { Upload, Download, Image as ImageIcon, RefreshCw, Copy, Check } from 'lucide-react';
 import clsx from 'clsx';
 
 const gradientPresets = [
@@ -26,6 +26,7 @@ export const ImageBeautifier: React.FC = () => {
   const [borderRadius, setBorderRadius] = useState(12);
   const [padding, setPadding] = useState(64);
   const [shadow, setShadow] = useState(true);
+  const [copied, setCopied] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
@@ -90,6 +91,43 @@ export const ImageBeautifier: React.FC = () => {
     link.download = 'beautified-image.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
+  };
+
+  const handleCopy = async () => {
+    if (!canvasRef.current || !image) return;
+
+    try {
+      // Check if Clipboard API is supported
+      if (!navigator.clipboard || !window.ClipboardItem) {
+        alert('Copy to clipboard is not supported in this browser. Please use the Download button instead.');
+        return;
+      }
+
+      const canvas = canvasRef.current;
+      
+      // Convert canvas to blob using Promise-based approach
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((blob) => resolve(blob), 'image/png');
+      });
+
+      if (!blob) {
+        throw new Error('Failed to create blob from canvas');
+      }
+      
+      // Use Clipboard API to copy the image
+      await navigator.clipboard.write([
+        new window.ClipboardItem({
+          'image/png': blob
+        })
+      ]);
+      
+      // Show success feedback
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy image:', err);
+      alert('Failed to copy image to clipboard. Please try downloading instead.');
+    }
   };
 
   const swapColors = () => {
@@ -405,13 +443,36 @@ export const ImageBeautifier: React.FC = () => {
         <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d] flex items-center justify-between">
           <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Preview</span>
           {image && (
-            <button
-              onClick={handleDownload}
-              className="flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white bg-[#238636] hover:bg-[#2ea043] transition-colors"
-            >
-              <Download size={14} />
-              <span>Download</span>
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={handleCopy}
+                className={clsx(
+                  'flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white transition-colors',
+                  copied 
+                    ? 'bg-[#2ea043]' 
+                    : 'bg-[#238636] hover:bg-[#2ea043]'
+                )}
+              >
+                {copied ? (
+                  <>
+                    <Check size={14} />
+                    <span>Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={14} />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+              <button
+                onClick={handleDownload}
+                className="flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white bg-[#238636] hover:bg-[#2ea043] transition-colors"
+              >
+                <Download size={14} />
+                <span>Download</span>
+              </button>
+            </div>
           )}
         </div>
         
