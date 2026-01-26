@@ -98,17 +98,21 @@ export const ImageBeautifier: React.FC = () => {
     try {
       const canvas = canvasRef.current;
       
-      // Convert canvas to blob
-      canvas.toBlob(async (blob) => {
-        if (!blob) return;
-        
-        // Use Clipboard API to copy the image
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            'image/png': blob
-          })
-        ]);
-      }, 'image/png');
+      // Convert canvas to blob using Promise-based approach
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((blob) => resolve(blob), 'image/png');
+      });
+
+      if (!blob) {
+        throw new Error('Failed to create blob from canvas');
+      }
+      
+      // Use Clipboard API to copy the image
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'image/png': blob
+        })
+      ]);
     } catch (err) {
       console.error('Failed to copy image:', err);
     }
