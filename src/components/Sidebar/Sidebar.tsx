@@ -77,9 +77,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
 
       {/* Tools */}
       <div className="flex-1 py-2">
-        {tools.map((tool) => {
+        {tools.map((tool, index) => {
           const Icon = tool.icon;
           const isActive = activeTool === tool.id;
+          const shortcutKey = index === 9 ? '0' : (index + 1).toString();
           return (
             <button
               key={tool.id}
@@ -90,13 +91,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
                   ? 'text-blue-600 dark:text-[#58a6ff] bg-blue-50 dark:bg-[#21262d]/50'
                   : 'text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9]'
               )}
-              title={isCollapsed ? tool.name : undefined}
+              title={isCollapsed ? `${tool.name} (Ctrl+${shortcutKey})` : undefined}
             >
               {isActive && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-blue-600 dark:bg-[#58a6ff] rounded-r" />
               )}
               <Icon size={20} />
-              {!isCollapsed && <span className="text-sm">{tool.name}</span>}
+              {!isCollapsed && (
+                <>
+                  <span className="text-sm flex-1 text-left">{tool.name}</span>
+                  <span className="text-[10px] text-gray-400 dark:text-[#6e7681] font-mono">
+                    ⌃{shortcutKey}
+                  </span>
+                </>
+              )}
             </button>
           );
         })}

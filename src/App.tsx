@@ -26,11 +26,11 @@ function AppContent() {
         return;
       }
 
-      // Ctrl/Cmd + 1-0 to switch tools
-      if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '0') {
+      // Ctrl/Cmd + 1-9 and 0 to switch tools
+      if ((e.ctrlKey || e.metaKey) && (e.key >= '1' && e.key <= '9' || e.key === '0')) {
         e.preventDefault();
         const tools: ToolType[] = ['config', 'markdown', 'diff', 'image', 'regex', 'decoder', 'timestamp', 'generator', 'case', 'url'];
-        const toolIndex = parseInt(e.key) === 0 ? 9 : parseInt(e.key) - 1;
+        const toolIndex = e.key === '0' ? 9 : parseInt(e.key) - 1;
         setActiveTool(tools[toolIndex]);
       }
     };

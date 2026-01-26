@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Upload, Download, Image as ImageIcon, RefreshCw } from 'lucide-react';
+import { Upload, Download, Image as ImageIcon, RefreshCw, Copy } from 'lucide-react';
 import clsx from 'clsx';
 
 const gradientPresets = [
@@ -90,6 +90,28 @@ export const ImageBeautifier: React.FC = () => {
     link.download = 'beautified-image.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
+  };
+
+  const handleCopy = async () => {
+    if (!canvasRef.current || !image) return;
+
+    try {
+      const canvas = canvasRef.current;
+      
+      // Convert canvas to blob
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        
+        // Use Clipboard API to copy the image
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob
+          })
+        ]);
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to copy image:', err);
+    }
   };
 
   const swapColors = () => {
@@ -405,13 +427,22 @@ export const ImageBeautifier: React.FC = () => {
         <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d] flex items-center justify-between">
           <span className="text-xs font-medium text-gray-500 dark:text-[#8b949e] uppercase tracking-wider">Preview</span>
           {image && (
-            <button
-              onClick={handleDownload}
-              className="flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white bg-[#238636] hover:bg-[#2ea043] transition-colors"
-            >
-              <Download size={14} />
-              <span>Download</span>
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white bg-[#238636] hover:bg-[#2ea043] transition-colors"
+              >
+                <Copy size={14} />
+                <span>Copy</span>
+              </button>
+              <button
+                onClick={handleDownload}
+                className="flex items-center gap-2 px-3 py-1.5 rounded text-xs font-medium text-white bg-[#238636] hover:bg-[#2ea043] transition-colors"
+              >
+                <Download size={14} />
+                <span>Download</span>
+              </button>
+            </div>
           )}
         </div>
         
