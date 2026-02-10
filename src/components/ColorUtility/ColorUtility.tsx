@@ -212,7 +212,7 @@ export const ColorUtility: React.FC = () => {
           return data.mode as Mode;
         }
       } catch (error) {
-        console.error('Failed to load saved color utility mode:', error);
+        console.error('Failed to parse saved color utility mode from localStorage:', error);
       }
     }
     return 'convert';
