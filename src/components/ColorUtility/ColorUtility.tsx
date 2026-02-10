@@ -203,60 +203,43 @@ const formatHsla = (color: ColorValues) => {
 };
 
 export const ColorUtility: React.FC = () => {
-  const [mode, setMode] = useState<Mode>(() => {
+  const savedState = useMemo(() => {
     const saved = localStorage.getItem('colorUtility');
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        if (data.mode === 'picker' || data.mode === 'convert') {
-          return data.mode as Mode;
-        }
-      } catch (error) {
-        console.error('Failed to parse saved color utility state from localStorage:', error);
-      }
+    if (!saved) return null;
+    try {
+      return JSON.parse(saved) as Partial<{
+        mode: Mode;
+        input: string;
+        pickerColor: string;
+        pickerAlpha: number;
+      }>;
+    } catch (error) {
+      console.error('Failed to parse saved color utility state from localStorage:', error);
+      return null;
+    }
+  }, []);
+
+  const [mode, setMode] = useState<Mode>(() => {
+    if (savedState && (savedState.mode === 'picker' || savedState.mode === 'convert')) {
+      return savedState.mode;
     }
     return 'convert';
   });
-  const [input, setInput] = useState(() => {
-    const saved = localStorage.getItem('colorUtility');
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        return typeof data.input === 'string' ? data.input : '';
-      } catch (error) {
-        console.error('Failed to load saved color utility input:', error);
-      }
-    }
-    return '';
-  });
+  const [input, setInput] = useState(() =>
+    typeof savedState?.input === 'string' ? savedState.input : ''
+  );
   const [pickerColor, setPickerColor] = useState(() => {
-    const saved = localStorage.getItem('colorUtility');
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        if (typeof data.pickerColor === 'string') {
-          const hex = parseHex(data.pickerColor);
-          if (hex) {
-            return formatHex(hex);
-          }
-        }
-      } catch (error) {
-        console.error('Failed to load saved color picker value:', error);
+    if (typeof savedState?.pickerColor === 'string') {
+      const hex = parseHex(savedState.pickerColor);
+      if (hex) {
+        return formatHex(hex);
       }
     }
     return '#6366F1';
   });
   const [pickerAlpha, setPickerAlpha] = useState(() => {
-    const saved = localStorage.getItem('colorUtility');
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        if (typeof data.pickerAlpha === 'number') {
-          return clamp(data.pickerAlpha, 0, 1);
-        }
-      } catch (error) {
-        console.error('Failed to load saved color picker alpha:', error);
-      }
+    if (typeof savedState?.pickerAlpha === 'number') {
+      return clamp(savedState.pickerAlpha, 0, 1);
     }
     return 1;
   });

@@ -165,7 +165,7 @@ The built files will be in the `dist` directory.
 - `Ctrl/Cmd + 8`: Switch to UUID/Hash Generator
 - `Ctrl/Cmd + 9`: Switch to URL Inspector
 - `Ctrl/Cmd + 0`: Switch to Image Beautifier
-- Color Utility: Accessible from the sidebar (no keyboard shortcut assigned in this release)
+- Color Utility: Accessible from the sidebar (Ctrl/Cmd + 0-9 are already assigned)
 - `Ctrl + Enter` (Git Diff): Compare texts
 - `Esc` (Git Diff): Return to edit mode
 

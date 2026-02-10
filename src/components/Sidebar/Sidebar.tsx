@@ -93,7 +93,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
                   ? 'text-blue-600 dark:text-[#58a6ff] bg-blue-50 dark:bg-[#21262d]/50'
                   : 'text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9]'
               )}
-              title={isCollapsed && shortcutKey ? `${tool.name} (Ctrl+${shortcutKey})` : tool.name}
+              title={shortcutKey ? `${tool.name} (Ctrl+${shortcutKey})` : tool.name}
             >
               {isActive && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-blue-600 dark:bg-[#58a6ff] rounded-r" />
