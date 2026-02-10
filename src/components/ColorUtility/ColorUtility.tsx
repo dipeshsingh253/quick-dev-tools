@@ -237,12 +237,7 @@ export const ColorUtility: React.FC = () => {
     }
     return '#6366F1';
   });
-  const [pickerAlpha, setPickerAlpha] = useState(() => {
-    if (typeof savedState?.pickerAlpha === 'number') {
-      return clamp(savedState.pickerAlpha, 0, 1);
-    }
-    return 1;
-  });
+  const [pickerAlpha] = useState(1);
   const [copied, setCopied] = useState<string | null>(null);
 
   const parsedColor = useMemo(() => parseColorInput(input), [input]);
@@ -430,21 +425,6 @@ export const ColorUtility: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-[#8b949e] mb-2">
-                    <span>Opacity</span>
-                    <span>{Math.round(pickerAlpha * 100)}%</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={100}
-                    step={1}
-                    value={Math.round(pickerAlpha * 100)}
-                    onChange={(event) => setPickerAlpha(Number(event.target.value) / 100)}
-                    className="w-full accent-blue-500"
-                  />
                 </div>
               </>
             )}
