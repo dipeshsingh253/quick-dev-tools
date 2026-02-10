@@ -11,6 +11,7 @@ import { TimestampConverter } from './components/TimestampConverter/TimestampCon
 import { UuidHashGenerator } from './components/UuidHashGenerator/UuidHashGenerator';
 import { TextCaseConverter } from './components/TextCaseConverter/TextCaseConverter';
 import { UrlInspector } from './components/UrlInspector/UrlInspector';
+import { ColorUtility } from './components/ColorUtility/ColorUtility';
 import type { ToolType } from './types';
 
 function AppContent() {
@@ -61,6 +62,8 @@ function AppContent() {
         return <TextCaseConverter />;
       case 'url':
         return <UrlInspector />;
+      case 'color':
+        return <ColorUtility />;
       default:
         return <ConfigFormatter />;
     }

@@ -4,7 +4,7 @@ A comprehensive suite of developer tools built with React, Vite, and TypeScript.
 
 ## Features
 
-QuickDevTools provides 10 essential developer tools in a single, fast, and privacy-focused application.
+QuickDevTools provides 11 essential developer tools in a single, fast, and privacy-focused application.
 
 ### 1. Config Formatter
 - **Auto-detection**: Automatically detects JSON or YAML format
@@ -78,6 +78,11 @@ QuickDevTools provides 10 essential developer tools in a single, fast, and priva
 - **Live Preview**: Real-time preview of beautified images
 - **Download**: Export beautified images as PNG
 - **Perfect for Social Media**: Ideal for sharing screenshots on X, LinkedIn, etc.
+
+### 12. Color Utility
+- **Automatic Conversion**: Paste HEX, RGB(A), or HSL(A) and instantly see all formats
+- **Color Picker**: Visually pick a color and preview the converted values
+- **Copy Ready**: One-click copy for each supported format
 
 ## Tech Stack
 
@@ -160,6 +165,7 @@ The built files will be in the `dist` directory.
 - `Ctrl/Cmd + 8`: Switch to UUID/Hash Generator
 - `Ctrl/Cmd + 9`: Switch to URL Inspector
 - `Ctrl/Cmd + 0`: Switch to Image Beautifier
+- Color Utility: Accessible from the sidebar (no keyboard shortcut yet)
 - `Ctrl + Enter` (Git Diff): Compare texts
 - `Esc` (Git Diff): Return to edit mode
 
@@ -193,6 +199,8 @@ quickdevtools/
 │   │   │   └── UrlInspector.tsx
 │   │   ├── ImageBeautifier/      # Screenshot beautification tool
 │   │   │   └── ImageBeautifier.tsx
+│   │   ├── ColorUtility/         # Color converter and picker tool
+│   │   │   └── ColorUtility.tsx
 │   │   └── Sidebar/              # Navigation sidebar component
 │   │       └── Sidebar.tsx
 │   ├── context/                  # React context providers

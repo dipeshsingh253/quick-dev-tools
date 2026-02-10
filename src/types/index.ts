@@ -1,4 +1,4 @@
-export type ToolType = 'config' | 'markdown' | 'diff' | 'image' | 'regex' | 'decoder' | 'timestamp' | 'generator' | 'case' | 'url';
+export type ToolType = 'config' | 'markdown' | 'diff' | 'image' | 'regex' | 'decoder' | 'timestamp' | 'generator' | 'case' | 'url' | 'color';
 
 export type Theme = 'light' | 'dark';
 
@@ -78,4 +78,11 @@ export interface TextCaseConverterState {
 
 export interface UrlInspectorState {
   input: string;
+}
+
+export interface ColorUtilityState {
+  mode: 'convert' | 'picker';
+  input: string;
+  pickerColor: string;
+  pickerAlpha: number;
 }
