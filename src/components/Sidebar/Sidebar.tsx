@@ -17,7 +17,8 @@ import {
   Clock,
   Key,
   Type,
-  Link
+  Link,
+  Palette
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -37,6 +38,7 @@ const tools = [
   { id: 'generator' as ToolType, name: 'UUID/Hash', icon: Key },
   { id: 'case' as ToolType, name: 'Case Converter', icon: Type },
   { id: 'url' as ToolType, name: 'URL Inspector', icon: Link },
+  { id: 'color' as ToolType, name: 'Color Utility', icon: Palette },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) => {
@@ -80,7 +82,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
         {tools.map((tool, index) => {
           const Icon = tool.icon;
           const isActive = activeTool === tool.id;
-          const shortcutKey = index === 9 ? '0' : (index + 1).toString();
+          const shortcutKey = index < 9 ? (index + 1).toString() : index === 9 ? '0' : null;
           return (
             <button
               key={tool.id}
@@ -91,7 +93,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
                   ? 'text-blue-600 dark:text-[#58a6ff] bg-blue-50 dark:bg-[#21262d]/50'
                   : 'text-gray-500 dark:text-[#8b949e] hover:bg-gray-100 dark:hover:bg-[#21262d]/30 hover:text-gray-900 dark:hover:text-[#c9d1d9]'
               )}
-              title={isCollapsed ? `${tool.name} (Ctrl+${shortcutKey})` : undefined}
+              title={shortcutKey ? `${tool.name} (Ctrl+${shortcutKey})` : tool.name}
             >
               {isActive && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 bg-blue-600 dark:bg-[#58a6ff] rounded-r" />
@@ -100,9 +102,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTool, onToolChange }) =>
               {!isCollapsed && (
                 <>
                   <span className="text-sm flex-1 text-left">{tool.name}</span>
-                  <span className="text-[10px] text-gray-400 dark:text-[#6e7681] font-mono">
-                    ⌃{shortcutKey}
-                  </span>
+                  {shortcutKey && (
+                    <span className="text-[10px] text-gray-400 dark:text-[#6e7681] font-mono">
+                      ⌃{shortcutKey}
+                    </span>
+                  )}
                 </>
               )}
             </button>
