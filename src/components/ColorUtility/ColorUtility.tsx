@@ -237,7 +237,7 @@ export const ColorUtility: React.FC = () => {
     }
     return '#6366F1';
   });
-  const [pickerAlpha] = useState(1);
+  const pickerAlpha = 1;
   const [copied, setCopied] = useState<string | null>(null);
 
   const parsedColor = useMemo(() => parseColorInput(input), [input]);
