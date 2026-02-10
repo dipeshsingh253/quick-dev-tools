@@ -30,7 +30,14 @@ QuickDevTools provides 11 essential developer tools in a single, fast, and priva
   - `Esc` to edit
 - **GitHub-style**: Matches GitHub's diff visualization
 
-### 4. Regex Checker
+### 4. Image Beautifier
+- **Background Options**: Solid colors or gradients
+- **Customizable**: Border radius, padding, gradient rotation
+- **Live Preview**: Real-time preview of beautified images
+- **Download**: Export beautified images as PNG
+- **Perfect for Social Media**: Ideal for sharing screenshots on X, LinkedIn, etc.
+
+### 5. Regex Checker
 - **Pattern Testing**: Test regular expressions against any text
 - **Flag Support**: All regex flags (g, i, m, s, u, y) with descriptions
 - **Highlighted Matches**: Visual highlighting of all matches in test string
@@ -38,7 +45,7 @@ QuickDevTools provides 11 essential developer tools in a single, fast, and priva
 - **Real-time Validation**: Instant error detection for invalid patterns
 - **Debounced Input**: Efficient matching with 300ms debounce
 
-### 5. Decoder/Encoder
+### 6. Decoder/Encoder
 - **Auto-detection**: Automatically detects Base64, URL-encoded, or JWT format
 - **Bidirectional**: Encode to Base64/URL or decode from various formats
 - **JWT Support**: Decodes JSON Web Tokens showing header and payload
@@ -46,38 +53,31 @@ QuickDevTools provides 11 essential developer tools in a single, fast, and priva
 - **Format Indicators**: Visual indicators showing detected or selected encoding type
 - **Error Handling**: Clear error messages for invalid inputs
 
-### 6. Text Case Converter
+### 7. Text Case Converter
 - **Multiple Case Types**: Convert between camelCase, snake_case, kebab-case, PascalCase, etc.
 - **Instant Conversion**: Real-time conversion as you type
 - **Copy to Clipboard**: Quick copy for each case type
 - **Visual Preview**: See all case conversions at once
 
-### 7. Timestamp Converter
+### 8. Timestamp Converter
 - **Multiple Formats**: Unix timestamp, ISO 8601, RFC 2822, and human-readable
 - **Timezone Support**: Convert to different timezones
 - **Bidirectional**: Convert from any format to any other format
 - **Real-time Parsing**: Instant validation and conversion
 - **Current Time**: Quick insertion of current timestamp in any format
 
-### 8. UUID/Hash Generator
+### 9. UUID/Hash Generator
 - **UUID Generation**: Generate version 4 UUIDs
 - **SHA-256 Hash**: Generate SHA-256 hashes for any input
 - **Copy Functionality**: One-click copy for generated values
 - **Input Validation**: Real-time validation of input for hashing
 
-### 9. URL Inspector
+### 10. URL Inspector
 - **URL Parsing**: Break down URLs into components (protocol, host, path, query, hash)
 - **Query Parameters**: Extract and display all query parameters
 - **Hash Fragment**: Show and copy URL fragments
 - **Validation**: Validate URL format and structure
 - **Visual Breakdown**: Clear visual representation of URL parts
-
-### 10. Image Beautifier
-- **Background Options**: Solid colors or gradients
-- **Customizable**: Border radius, padding, gradient rotation
-- **Live Preview**: Real-time preview of beautified images
-- **Download**: Export beautified images as PNG
-- **Perfect for Social Media**: Ideal for sharing screenshots on X, LinkedIn, etc.
 
 ### 11. Color Utility
 - **Automatic Conversion**: Paste HEX, RGB(A), or HSL(A) and instantly see all formats
